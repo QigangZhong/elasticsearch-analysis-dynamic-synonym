@@ -180,12 +180,11 @@ public class DynamicSynonymTokenFilterFactory extends
                     Iterator<SynonymDynamicSupport> filters = dynamicSynonymFilters.get(indexName).iterator();
                     while (filters.hasNext()) {
                         filters.next().update(synonymMap);
-                        logger.info("success reload synonym success! indexName:{} path:{}", indexName, synonymFile.getLocation());
                     }
                 }
             } catch (Exception e) {
-                logger.error("Monitor thread reload remote synonym error! indexName:{} path:{}",
-                        indexName, synonymFile.getLocation());
+                logger.error("Monitor thread reload remote synonym error! indexName:{} path:{} exceptionMessage:{}",
+                        indexName, synonymFile.getLocation(), e.getMessage(),e);
             }
         }
     }

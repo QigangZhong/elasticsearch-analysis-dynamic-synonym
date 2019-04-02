@@ -103,6 +103,7 @@ public class RemoteSynonymFile implements SynonymFile {
     /**
      * 从远程服务器上下载自定义词条
      */
+    @Override
     public Reader getReader() {
         Reader reader = null;
         RequestConfig rc = RequestConfig.custom()
@@ -193,16 +194,16 @@ public class RemoteSynonymFile implements SynonymFile {
         try {
             response = httpclient.execute(head);
             if (response.getStatusLine().getStatusCode() == 200) { // 返回200 才做操作
-                if (!response.getLastHeader("Last-Modified").getValue()
-                        .equalsIgnoreCase(lastModified)
-                        || !response.getLastHeader("ETag").getValue()
-                        .equalsIgnoreCase(eTag)) {
+                if ((response.getLastHeader("Last-Modified")!=null && !response.getLastHeader("Last-Modified").getValue().equalsIgnoreCase(lastModified))
+                        || (response.getLastHeader("ETag")!=null && !response.getLastHeader("ETag").getValue().equalsIgnoreCase(eTag))) {
 
                     lastModified = response.getLastHeader("Last-Modified") == null ? null
                             : response.getLastHeader("Last-Modified")
                             .getValue();
                     eTag = response.getLastHeader("ETag") == null ? null
                             : response.getLastHeader("ETag").getValue();
+
+                    logger.info("ETag or Last-Modified changed, location:{}", location);
                     return true;
                 }
             } else if (response.getStatusLine().getStatusCode() == 304) {
