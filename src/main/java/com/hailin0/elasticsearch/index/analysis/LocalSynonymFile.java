@@ -79,6 +79,7 @@ public class LocalSynonymFile implements SynonymFile {
 
     }
 
+    @Override
     public Reader getReader() {
         Reader reader = null;
         BufferedReader br = null;

@@ -203,7 +203,7 @@ public class RemoteSynonymFile implements SynonymFile {
                     eTag = response.getLastHeader("ETag") == null ? null
                             : response.getLastHeader("ETag").getValue();
 
-                    logger.info("ETag or Last-Modified changed, location:{}", location);
+                    logger.info("ETag or Last-Modified changed, location:{}, ETag:{}, Last-Modified:{}", location, eTag, lastModified);
                     return true;
                 }
             } else if (response.getStatusLine().getStatusCode() == 304) {
