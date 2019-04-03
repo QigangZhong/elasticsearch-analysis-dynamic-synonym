@@ -4,14 +4,14 @@
 
 	<groupId>com.hailin0.elasticsearch</groupId>
 	<artifactId>elasticsearch-analysis-dynamic-synonym</artifactId>
-	<version>5.3.0</version>
+	<version>5.5.3</version>
 	<packaging>jar</packaging>
 	<name>elasticsearch-dynamic-synonym</name>
 	<description>Analysis-plugin for synonym</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<elasticsearch.version>5.3.0</elasticsearch.version>
+		<elasticsearch.version>${project.version}</elasticsearch.version>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<elasticsearch.plugin.name>analysis-dynamic-synonym</elasticsearch.plugin.name>
 		<elasticsearch.assembly.descriptor>${project.basedir}/src/main/assemblies/plugin.xml</elasticsearch.assembly.descriptor>
@@ -48,7 +48,7 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.4.1</version>
+			<version>4.5.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>

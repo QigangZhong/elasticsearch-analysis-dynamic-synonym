@@ -101,7 +101,7 @@ public class DynamicSynonymTokenFilterFactory extends
 
         //根据location前缀初始化同义词更新策略
         SynonymFile synonymFile;
-        if (location.startsWith("http://")) {
+        if (location.startsWith("http://") || location.startsWith("https://")) {
             synonymFile = new RemoteSynonymFile(env, analyzer, expand, format, location);
         } else {
             synonymFile = new LocalSynonymFile(env, analyzer, expand, format, location);
